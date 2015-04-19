@@ -36,7 +36,7 @@ public class PageDenys extends WebAppPage {
         html.addHorizontalLine();
         html.addText("Student");
         html.addNewLine();
-        html.addLink("My picture", "/rozumden/pictures");
+        html.addLink("My picture", "http://localhost:8080/HelloStatelessWar/rozumden/pictures");
         
     }
 
