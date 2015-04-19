@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author honza
  */
-@WebServlet(name = "PageDenysPictures", urlPatterns = {"/rozumden/pictures"})
+@WebServlet(name = "PageDenysPictures", urlPatterns = {"/pictures"})
 public class PageDenysPictures extends WebAppPage {
-    
+
     public PageDenysPictures() {
         super("PageDenysPictures","Pictures");
     }
