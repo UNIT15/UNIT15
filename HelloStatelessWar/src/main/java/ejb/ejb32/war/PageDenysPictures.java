@@ -5,6 +5,7 @@
  */
 package ejb.ejb32.war;
 
+import ejb.ejb32.war.html.HtmlTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,10 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author petro
+ * @author honza
  */
-@WebServlet(name = "PagePetro", urlPatterns = {"/PagePetro"})
-public class PagePetro extends WebAppPage {
+@WebServlet(name = "PageDenysPictures", urlPatterns = {"/rozumden/pictures"})
+public class PageDenysPictures extends WebAppPage {
+    
+    public PageDenysPictures() {
+        super("PageDenysPictures","Pictures");
+    }
 
-        public PagePetro(){super("PagePetro","PagePetro");}
+    @Override
+    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        html.addText("Pictures");
+    }
+
+    
+    
 }
