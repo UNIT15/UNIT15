@@ -27,17 +27,18 @@ public class PageDenys extends WebAppPage {
 
     @Override
     protected void footer(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        html.addText("Czech Technical University");
+        html.addText("Czech TEchnical University");
     }
 
     @Override
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        html.addText("Denys Rozumnyi");
-        html.addHorizontalLine();
         html.addText("Student");
+<<<<<<< HEAD
         html.addNewLine();
         html.addLink("My picture", "http://localhost:8080/HelloStatelessWar/rozumden/pictures");
         
+=======
+>>>>>>> 508d871b63c8d465147ae24de5ca424c120f1d01
     }
 
     @Override
