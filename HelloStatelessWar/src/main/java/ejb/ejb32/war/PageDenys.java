@@ -34,7 +34,7 @@ public class PageDenys extends WebAppPage {
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         html.addText("Student");
         html.addNewLine();
-        html.addLink("My picture", "http://localhost:8080/HelloStatelessWar/rozumden/pictures");
+        html.addLink("My picture", "http://localhost:8080/HelloStatelessWar/pictures");
 
     }
 

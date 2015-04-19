@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author honza
  */
-@WebServlet(name = "PageDenysPictures", urlPatterns = {"/rozumden/pictures"})
+@WebServlet(name = "PageDenysPictures", urlPatterns = {"/pictures"})
 public class PageDenysPictures extends WebAppPage {
     
     public PageDenysPictures() {
@@ -28,6 +28,7 @@ public class PageDenysPictures extends WebAppPage {
     @Override
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         html.addText("Pictures");
+        html.addImage("matlab.gif");
     }
 
     
