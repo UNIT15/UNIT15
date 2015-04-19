@@ -35,7 +35,6 @@ public class PageDenys extends WebAppPage {
         html.addText("Student");
         html.addNewLine();
         html.addLink("My picture", "http://localhost:8080/HelloStatelessWar/pictures");
-
     }
 
     @Override
