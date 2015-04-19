@@ -40,6 +40,7 @@
 
 package ejb.ejb32.war;
 
+import ejb.ejb32.war.html.HtmlTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -48,6 +49,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.EntityManagerFactory;
+import javax.annotation.Resource;
+import javax.transaction.UserTransaction;
 
 
 
@@ -55,6 +60,12 @@ public abstract class WebAppPage extends HttpServlet {
 
     String title = "WebApp Page";
     String name = "WebApp Page";
+    
+    @PersistenceUnit
+    protected EntityManagerFactory emf;
+    
+    @Resource
+    protected UserTransaction transaction;
     
     public WebAppPage(){}
     
@@ -72,113 +83,74 @@ public abstract class WebAppPage extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
+        logic(req, res);
+        
         res.setContentType("text/html");
         PrintWriter writer = res.getWriter();
         
         writer.println("<!doctype html>");
-        writer.println("<html>");
-        writer.println("  <head>");
-        writer.println("     <title>"+this.title+"</title>");
-        head(req, res);
-        writer.println("  </head>");
-        writer.println("  <body>");
-        body(req, res);
-        writer.println("  </body>");
-        writer.println("</html>");
+        HtmlTag html = new HtmlTag("html");
+        HtmlTag head = html.addTag(new HtmlTag("head"));
+        head.addText("<title>"+this.title+"</title>");
+        head(head, req, res);
+        
+        HtmlTag body = html.addTag(new HtmlTag("body"));
+        body(body, req, res);
+        
+        html.print(writer);
     }
     
-    protected void body(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        PrintWriter writer = res.getWriter();
-        writer.println("<div id='wrap'>");
-            
-            writer.println("<div id='header'>");
-            writer.println("<div>");
-                header(req, res);
-            writer.println("</div>");
-            writer.println("</div>");
-        
-            writer.println("<div id='right'>");
-            writer.println("<div>");
-                content(req, res);
-            writer.println("</div>");
-            writer.println("</div>");
-        
-            writer.println("<div id='left'>");
-            writer.println("<div>");
-                menu(req, res);
-            writer.println("</div>");
-            writer.println("</div>");
-            
-            writer.println("<div id='footer'>");
-            writer.println("<div>");
-                footer(req, res);
-            writer.println("</div>");
-            writer.println("</div>");
-            
-        writer.println("</div>");
-    }
+    protected void logic(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException { }
     
-    protected void head(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+    protected void head(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
     {
-        PrintWriter writer = res.getWriter();
-        writer.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">");
-    }
-    protected void header(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
-        PrintWriter writer = res.getWriter();
-        writer.println("header");
-    }
-    protected void footer(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
-        PrintWriter writer = res.getWriter();
-        writer.println("header");
-    }
-    protected void menu(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-        PrintWriter writer = res.getWriter();
-        writer.println("<h3>Category 1</h3>");
-        writer.println("  <ul>");
-        writer.println("    <a href='#'><li>item 1</li></a>");
-        writer.println("    <a href='#'><li>item 2</li></a>");
-        writer.println("    <a href='#'><li>item 3</li></a>");
-        writer.println("    <a href='#'><li>item 4</li></a>");
-        writer.println("    <a href='#'><li>item 5</li></a>");
-        writer.println("  </ul>");
-        
-        writer.println("<h3>Category 2</h3>");
-        writer.println("  <ul>");
-        writer.println("    <a href='#'><li>item 1</li></a>");
-        writer.println("    <a href='#'><li>item 2</li></a>");
-        writer.println("  </ul>");
-        
-        writer.println("<h3>Category 3</h3>");
-        writer.println("  <ul>");
-        writer.println("    <a href='#'><li>item 1</li></a>");
-        writer.println("    <a href='#'><li>item 2</li></a>");
-        writer.println("    <a href='#'><li>item 3</li></a>");
-        writer.println("    <a href='#'><li>item 4</li></a>");
-        writer.println("  </ul>");
+        html.addText("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">");
     }
     
-    private void writeMenuItem(String name, String href, PrintWriter writer) throws IOException, ServletException{
-        String isSelected = name==this.name?" selected":"";
-        /*writer.println("<a href='"+href+"'>");
-        writer.println("<div class='menuitem"+isSelected+"'>");
-        writer.println("<span>"+name+"</span>");
-        writer.println("</div>");
-        writer.println("</a>");*/
+    protected void body(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        HtmlTag page = html.addContainer().setId("page").addContainer();
+        header(page.addContainer().setId("header").addContainer(),req, res);
+        menu(page.addContainer().setId("menu").addContainer(),req, res);
+        content(page.addContainer().setId("content").addContainer(),req, res);
+        footer(page.addContainer().setId("footer").addContainer(),req, res);
+    }
+    
+    protected void header(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+    {
+        html.addText("header");
+    }
+    
+    protected void menu(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+        
+        html.addContainer().setClass("menuHeader").addText("Welcome");
+        addMenuItem(html, "About Us", "About");
+        html.addContainer().setClass("menuSpacer").addText(" ");
+        
+        html.addContainer().setClass("menuHeader").addText("Samples");
+        addMenuItem(html, "HTML Output", "index");
+        addMenuItem(html, "Request", "PageRequest");
+        addMenuItem(html, "Database", "PageDatabase");
+        
+        html.addContainer().setClass("menuSpacer").addText(" ");
         
     }
     
-    private void writeMenuCategory(String name, PrintWriter writer) throws IOException, ServletException{
-        /*writer.println("<div class='menuitem category'>");
-        writer.println("<span>"+name+"</span>");
-        writer.println("</div>");*/
+    protected void addMenuItem(HtmlTag html, String name, String href){
+        HtmlTag tag = html.addLink("", href).addContainer();
+        if(name.equals(this.name))tag.setClass("menuItem selected");
+        else tag.setClass("menuItem");
+        tag.addText(name);
+        
     }
     
-    protected void content(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
     {
-        PrintWriter writer = res.getWriter();
-        writer.println("header");
+        html.addText("content");
+    }
+    
+    protected void footer(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+    {
+        html.addText("footer");
     }
 
 }
