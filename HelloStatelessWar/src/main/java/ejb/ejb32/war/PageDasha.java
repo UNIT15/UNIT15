@@ -21,10 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PageDasha", urlPatterns = {"/PageDasha"})
 public class PageDasha extends WebAppPage {
 
+   public  PageDasha() {
+        super("PageDasha", "Daria Silivonenko");
+    }
+
     @Override
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        super.content(html, req, res);
-         html.addText("Student");//To change body of generated methods, choose Tools | Templates.
+
+        html.addText("Studentka");//To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -45,7 +49,7 @@ public class PageDasha extends WebAppPage {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PageDasha</title>");            
+            out.println("<title>Servlet PageDasha</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet PageDasha at " + request.getContextPath() + "</h1>");
