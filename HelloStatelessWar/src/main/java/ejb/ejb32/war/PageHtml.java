@@ -65,8 +65,6 @@ public class PageHtml extends WebAppPage {
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
         
-        
-        
         html.addHeader("Demonstrates HTML output");
         html.addParagraph("text text text text text text text text text text ");
         html.addLink("click me", "about:blank");
@@ -94,7 +92,6 @@ public class PageHtml extends WebAppPage {
         HtmlFormTable ft = html.addFormTable();
         
         ft.addFormHeader2("About you");
-        
         
         ft.addFormInputText("name", "Enter your name");
         ft.addFormInputCheckbox("flowers","Do you like flowers?");
@@ -126,6 +123,8 @@ public class PageHtml extends WebAppPage {
         ft.addFormInputText("result", "vysledek:").setAttribute("value", a+op+b);
         
         ft.addFormSubmit("odeslat");
+        
+        ft.addFormHeader("Bum");
         
     }
 }
