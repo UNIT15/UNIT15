@@ -79,6 +79,12 @@ public class HtmlTag extends Html{
         return tag;
     }
     
+    public HtmlTag addImage(String image){
+        HtmlTag tag = new HtmlTag("img").setAttribute("src", "img/"+image);
+        subnodes.add(tag);
+        return tag;
+    }
+    
     public HtmlTag addParagraph(String text){
         HtmlTag tag = new HtmlTag("p");
         tag.addText(text);
