@@ -130,6 +130,13 @@ public abstract class WebAppPage extends HttpServlet {
         addMenuItem(html, "HTML Output", "index");
         addMenuItem(html, "Request", "PageRequest");
         addMenuItem(html, "Database", "PageDatabase");
+        html.addContainer().setClass("menuSpacer").addText(" ");
+        
+        html.addContainer().setClass("menuHeader").addText("People");
+        addMenuItem(html, "Daria", "Daria");
+        addMenuItem(html, "Denys", "Denys");
+        addMenuItem(html, "Petro", "Petro");
+        html.addContainer().setClass("menuSpacer").addText(" ");
         
         html.addContainer().setClass("menuSpacer").addText(" ");
         
