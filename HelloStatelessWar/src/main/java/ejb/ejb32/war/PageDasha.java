@@ -5,6 +5,7 @@
  */
 package ejb.ejb32.war;
 
+import ejb.ejb32.war.html.HtmlTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +19,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author Дарья
  */
 @WebServlet(name = "PageDasha", urlPatterns = {"/PageDasha"})
-public class PageDasha extends HttpServlet {
+public class PageDasha extends WebAppPage {
+
+    @Override
+    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        super.content(html, req, res);
+         html.addText("Student");//To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
