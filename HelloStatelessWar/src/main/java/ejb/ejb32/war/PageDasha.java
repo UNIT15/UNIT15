@@ -5,6 +5,7 @@
  */
 package ejb.ejb32.war;
 
+import ejb.ejb32.war.html.HtmlTable;
 import ejb.ejb32.war.html.HtmlTag;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author Дарья
@@ -21,14 +23,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PageDasha", urlPatterns = {"/PageDasha"})
 public class PageDasha extends WebAppPage {
 
-   public  PageDasha() {
+    public PageDasha() {
         super("PageDasha", "Daria Silivonenko");
     }
 
     @Override
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-
-        html.addText("Studentka");//To change body of generated methods, choose Tools | Templates.
+        html.addHeader("Informace");
+        
+        html.addText("studentka");//To change body of generated methods, choose Tools | Templates.
     }
 
     /**
