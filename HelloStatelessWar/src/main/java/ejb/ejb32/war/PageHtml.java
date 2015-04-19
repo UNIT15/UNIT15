@@ -80,7 +80,11 @@ public class PageHtml extends WebAppPage {
         table.addNewRow();
         
         table.addBodyCell("Denys");
+<<<<<<< HEAD
         table.addBodyCell("Rozumnyy");
+=======
+        table.addBodyCell("Rozumnyi");
+>>>>>>> ba3766aa1e2d2a760a1cd303f5533cd568c852da
         table.addNewRow();
         
         table.addBodyCell("Daria");
@@ -123,7 +127,6 @@ public class PageHtml extends WebAppPage {
         String a = req.getParameter("q");
         String b = req.getParameter("b");
         String op = req.getParameter("operace");
-
         ft.addFormInputText("result", "vysledek:").setAttribute("value", a+op+b);
         
         ft.addFormSubmit("odeslat");
