@@ -27,8 +27,8 @@ public class PageDenysPictures extends WebAppPage {
 
     @Override
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        html.addText("Pictures");
         html.addImage("matlab.gif");
+        html.addImage("sphere_prague.jpg");
     }
 
     

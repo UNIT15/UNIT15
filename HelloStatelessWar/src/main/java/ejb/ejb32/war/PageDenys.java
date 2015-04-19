@@ -27,7 +27,7 @@ public class PageDenys extends WebAppPage {
 
     @Override
     protected void footer(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        html.addText("Czech TEchnical University");
+        html.addText("Czech Technical University");
     }
 
     @Override
