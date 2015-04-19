@@ -5,6 +5,7 @@
  */
 package ejb.ejb32.war;
 
+import ejb.ejb32.war.html.HtmlTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -24,4 +25,19 @@ public class PageDenys extends WebAppPage {
         super("PageDenys", "Denys Rozumnyi");
     }
 
+    @Override
+    protected void footer(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        html.addText("Czech TEchnical University");
+    }
+
+    @Override
+    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        html.addText("Student");
+    }
+
+    @Override
+    protected void header(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        html.addText("Some information about me");
+    }
+    
 }
