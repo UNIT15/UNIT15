@@ -79,7 +79,7 @@ public class TestServlet extends WebAppPage {
      * @throws IOException
      * @throws ServletException
      */
-    @Override
+
     protected void content(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
 
