@@ -133,15 +133,11 @@ public abstract class WebAppPage extends HttpServlet {
         html.addContainer().setClass("menuSpacer").addText(" ");
         
         html.addContainer().setClass("menuHeader").addText("People");
-<<<<<<< HEAD
-        addMenuItem(html, "Daria", "Daria");
-        addMenuItem(html, "Denys", "PageDenys");
-        addMenuItem(html, "Petro", "Petro");
-=======
+
         addMenuItem(html, "Daria", "PageDaria");
         addMenuItem(html, "Denys", "PageDenys");
         addMenuItem(html, "Petro", "PagePetro");
->>>>>>> 0003882dc4489eaffb51add162ace60c38a13a83
+
         html.addContainer().setClass("menuSpacer").addText(" ");
         
         html.addContainer().setClass("menuSpacer").addText(" ");
