@@ -79,7 +79,7 @@ public class PageHtml extends WebAppPage {
         table.addBodyCell("Kostyuk");
         table.addNewRow();
         
-        table.addBodyCell("Denis");
+        table.addBodyCell("Denys");
         table.addBodyCell("Rozumnyy");
         table.addNewRow();
         
