@@ -48,7 +48,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static javax.swing.text.html.HTML.Tag.HEAD;
 
 
 @WebServlet(name="TestServlet", urlPatterns={"/index","/index1","/index2"})
@@ -66,8 +65,6 @@ public class PageHtml extends WebAppPage {
     protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
         
-        
-        
         html.addHeader("Demonstrates HTML output");
         html.addParagraph("text text text text text text text text text text ");
         html.addLink("click me", "about:blank");
@@ -81,9 +78,7 @@ public class PageHtml extends WebAppPage {
         table.addNewRow();
         
         table.addBodyCell("Denys");
-
         table.addBodyCell("Rozumnyi");
-
         table.addNewRow();
         
         table.addBodyCell("Daria");
@@ -98,7 +93,6 @@ public class PageHtml extends WebAppPage {
         
         ft.addFormHeader2("About you");
         
-        
         ft.addFormInputText("name", "Enter your name");
         ft.addFormInputCheckbox("flowers","Do you like flowers?");
         
@@ -109,7 +103,7 @@ public class PageHtml extends WebAppPage {
         opt.addItem("blue", "I like blue");
         opt.addItem("green", "I like green");
         
-        ft.addFormHeader2("Favourite Colors");
+        ft.addFormHeader2("Favourite Colors radio");
         
         HtmlOptionList opt2 = ft.addFormInputRadio("favColor", "So what is your fav. color:");
         opt2.addItem("red", "I like red");
@@ -129,6 +123,8 @@ public class PageHtml extends WebAppPage {
         ft.addFormInputText("result", "vysledek:").setAttribute("value", a+op+b);
         
         ft.addFormSubmit("odeslat");
+        
+        ft.addFormHeader("Bum");
         
     }
 }

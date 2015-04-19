@@ -58,7 +58,7 @@ import javax.ejb.EJB;
  * 
  *
  */
-@WebServlet(name="TestServlet", urlPatterns={"/index2"})
+@WebServlet(name="TestServlet", urlPatterns={"/index"})
 public class TestServlet extends WebAppPage {
 
     private @EJB PropertiesBean propertiesBean;
