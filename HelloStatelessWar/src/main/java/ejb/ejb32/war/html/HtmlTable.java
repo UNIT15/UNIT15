@@ -74,13 +74,6 @@ public class HtmlTable extends HtmlTag {
         return cell;
     }
     
-    public HtmlTag addBodyCellBold(String content){
-        HtmlTag cell = new HtmlTag("th");
-        cell.addText(content);
-        bodyRow.addTag(cell);
-        return cell;
-    }
-    
     public void addNewRow(){
         bodyRow = new HtmlTag("tr");
         bodyTag.addTag(bodyRow);
