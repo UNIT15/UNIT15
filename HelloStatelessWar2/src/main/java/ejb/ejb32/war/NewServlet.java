@@ -5,8 +5,6 @@
  */
 package ejb.ejb32.war;
 
-import ejb.ejb32.war.html.HtmlTable;
-import ejb.ejb32.war.html.HtmlTag;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,24 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
- * @author Дарья
+ * @author honza
  */
-@WebServlet(name = "PageDasha", urlPatterns = {"/PageDasha"})
-public class PageDasha extends WebAppPage {
-
-    public PageDasha() {
-        super("PageDasha", "Daria Silivonenko");
-    }
-
-    @Override
-    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        html.addHeader("Informace");
-        
-        html.addText("studentka");//To change body of generated methods, choose Tools | Templates.
-    }
+@WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
+public class NewServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,10 +38,10 @@ public class PageDasha extends WebAppPage {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PageDasha</title>");
+            out.println("<title>Servlet NewServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PageDasha at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
