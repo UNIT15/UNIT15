@@ -58,7 +58,8 @@ public class Database{
     //The emf corresponding to 
     private EntityManagerFactory emf;  
     
-    private UserTransaction utx;
+    @Resource
+    //private UserTransaction utx;
     
     
     @PostConstruct
