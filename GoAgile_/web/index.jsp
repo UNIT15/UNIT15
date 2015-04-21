@@ -44,8 +44,10 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
 <html>
     <head>
+        <title>Go Agile</title>
     </head>
     <body>
-    <jsp:forward page="ListPerson" />
+        <h1>Welcome to "Go Agile"!</h1>
+    <jsp:forward page="welcome" />
     </body>
 </html>

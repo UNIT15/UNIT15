@@ -20,7 +20,7 @@ import javax.persistence.EntityManager;
  * @author petro
  */
 @Stateless
-@WebServlet(name = "About", urlPatterns = {"/About"})
+@WebServlet(name = "About", urlPatterns = {"/Home"})
 public class PageAbout extends WebAppPage {
 
     String comment = "header";

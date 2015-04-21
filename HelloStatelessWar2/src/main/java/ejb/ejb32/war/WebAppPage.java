@@ -37,7 +37,6 @@
  * only if the new code is made subject to such option by the copyright
  * holder.
  */
-
 package ejb.ejb32.war;
 
 import ejb.ejb32.war.html.HtmlTag;
@@ -54,26 +53,25 @@ import javax.persistence.EntityManagerFactory;
 import javax.annotation.Resource;
 import javax.transaction.UserTransaction;
 
-
-
 public abstract class WebAppPage extends HttpServlet {
 
     String title = "WebApp Page";
     String name = "WebApp Page";
-    
+
     @PersistenceUnit
     protected EntityManagerFactory emf;
-    
+
     @Resource
     protected UserTransaction transaction;
-    
-    public WebAppPage(){}
-    
-    public WebAppPage(String name, String title){
+
+    public WebAppPage() {
+    }
+
+    public WebAppPage(String name, String title) {
         this.name = name;
         this.title = title;
     }
-    
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -84,72 +82,75 @@ public abstract class WebAppPage extends HttpServlet {
             throws IOException, ServletException {
 
         logic(req, res);
-        
+
         res.setContentType("text/html");
         PrintWriter writer = res.getWriter();
-        
+
         writer.println("<!doctype html>");
         HtmlTag html = new HtmlTag("html");
         HtmlTag head = html.addTag(new HtmlTag("head"));
-        head.addText("<title>"+this.title+"</title>");
+        head.addText("<title>" + this.title + "</title>");
         head(head, req, res);
-        
+
         HtmlTag body = html.addTag(new HtmlTag("body"));
         body(body, req, res);
-        
+
         html.print(writer);
     }
-    
-    protected void logic(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException { }
-    
-    protected void head(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
+
+    protected void logic(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    }
+
+    protected void head(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         html.addText("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">");
     }
-    
+
     protected void body(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         HtmlTag page = html.addContainer().setId("page").addContainer();
-        header(page.addContainer().setId("header").addContainer(),req, res);
-        menu(page.addContainer().setId("menu").addContainer(),req, res);
-        content(page.addContainer().setId("content").addContainer(),req, res);
-        footer(page.addContainer().setId("footer").addContainer(),req, res);
+        header(page.addContainer().setId("header").addContainer(), req, res);
+        menu(page.addContainer().setId("menu").addContainer(), req, res);
+        content(page.addContainer().setId("content").addContainer(), req, res);
+        footer(page.addContainer().setId("footer").addContainer(), req, res);
     }
-    
-    protected void header(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
+
+    protected void header(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         html.addText("header");
     }
-    
-    protected void menu(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-        
+
+    protected void menu(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
         html.addContainer().setClass("menuHeader").addText("Welcome");
-        addMenuItem(html, "About Us", "About");
+        addMenuItem(html, "Home", "Home");
         html.addContainer().setClass("menuSpacer").addText(" ");
-        
-        html.addContainer().setClass("menuHeader").addText("Samples");
-        addMenuItem(html, "HTML Output", "index");
-        addMenuItem(html, "Request", "PageRequest");
-        addMenuItem(html, "Database", "PageDatabase");
-        
+
+        html.addContainer().setClass("menuHeader").addText("Aplications");
+        addMenuItem(html, "Poker Planning", "PagePokerPlanning");
+        addMenuItem(html, "Retrospective", "PageRetrospective");
+        addMenuItem(html, "Brainstorming", "PageBrainstorming");
+        addMenuItem(html, "Daily Standup", "PageDailyStandup");
         html.addContainer().setClass("menuSpacer").addText(" ");
-        
+        addMenuItem(html, "Help", "PageHelp");
+
+        html.addContainer().setClass("menuSpacer").addText(" ");
+
     }
-    
-    protected void addMenuItem(HtmlTag html, String name, String href){
+
+    protected void addMenuItem(HtmlTag html, String name, String href) {
         HtmlTag tag = html.addLink("", href).addContainer();
-        if(name.equals(this.name))tag.setClass("menuItem selected");
-        else tag.setClass("menuItem");
+        if (name.equals(this.name)) {
+            tag.setClass("menuItem selected");
+        } else {
+            tag.setClass("menuItem");
+        }
         tag.addText(name);
-        
+
     }
-    
-    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
+
+    protected void content(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         html.addText("content");
     }
-    
-    protected void footer(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
+
+    protected void footer(HtmlTag html, HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         html.addText("footer");
     }
 
