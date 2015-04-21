@@ -61,8 +61,8 @@ public class Database{
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; 
    
-   static final String DB_URL = "jdbc:mysql.kostyuk.cz/917_UNIT15";
-   //static final String DB_URL = "jdbc:mysql://localhost/MyDB";
+   //static final String DB_URL = "jdbc:mysql.kostyuk.cz/917_UNIT15";
+   static final String DB_URL = "jdbc:mysql://10.4.115.143/MyDB";
    
    //  Database credentials
    static final String USER = "917_UNIT15";
